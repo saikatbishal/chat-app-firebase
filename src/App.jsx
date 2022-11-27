@@ -29,31 +29,31 @@ const App = () => {
 
   return (
     <div className="App">
-        <header>
-          <h1>CHAT APP</h1>
-          <SignOut />
+      <header>
+        <h1>CHAT APP</h1>
+        <SignOut />
       </header>
       <section>
-        {user?<ChatRoom/>:<SignIn/>}
+        {user ? <ChatRoom /> : <SignIn />}
       </section>
     </div>
   )
 }
 const SignIn = () => {
-    const signInWithGoogle = () => {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      auth.signInWithPopup(provider);
-    }
+  const signInWithGoogle = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider);
+  }
   return (
     <div>
       <button onClick={signInWithGoogle}>Sign in with Google</button>
-      <p className ="rules">Do not violate the community guidelines or you will be banned for life!</p>
+      <p className="rules">Do not violate the community guidelines or you will be banned for life!</p>
 
-</div>
+    </div>
   )
 }
 function ChatRoom() {
-    const dummy = useRef();
+  const dummy = useRef();
   const messagesRef = firestore.collection('messages');
   const query = messagesRef.orderBy('createdAt').limit(25);
   const [messages] = useCollectionData(query, { idField: 'id' });
@@ -80,13 +80,13 @@ function ChatRoom() {
     <>
       <main>
         {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
-        <span ref = {dummy}></span>
+        <span ref={dummy}></span>
       </main>
       <form onSubmit={sendMessage}>
 
-      <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
+        <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
 
-      <button type="submit" disabled={!formValue}>▶</button>
+        <button type="submit" disabled={!formValue}>▶</button>
 
       </form>
     </>)
@@ -99,22 +99,22 @@ function SignOut() {
 }
 function DeleteMessage(uid) {
   firebase.firestore().collection("messages").where("uid", "==", uid).get()
-.then(querySnapshot => {
-    querySnapshot.docs[0].ref.delete();
-});
+    .then(querySnapshot => {
+      querySnapshot.docs[0].ref.delete();
+    });
 }
 
 
 function ChatMessage(props) {
-  const { text, uid, photoURL} = props.message;
-  const messageClass = uid === auth.currentUser.uid ? 'sent':'recieved';
+  const { text, uid, photoURL } = props.message;
+  const messageClass = uid === auth.currentUser.uid ? 'sent' : 'recieved';
   return (
     <div className={`message ${messageClass}`}>
       {(uid === auth.currentUser.uid) && <button className="delete" onClick={() => DeleteMessage(uid)}>⛔</button>}
-      <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} alt="" />
-      <p>{text}</p>  
+      <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.pnghttps://cdn0.iconfinder.com/data/icons/user-pictures/100/unknown_1-2-512.png'} alt="" />
+      <p>{text}</p>
     </div>
-  
+
   )
 }
 export default App
