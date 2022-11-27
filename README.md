@@ -1,8 +1,14 @@
-# Getting Started with Create React App
+# Minimal Chat Application with firebase and React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Find the list of dependencies in the `package.json` file
 
-## Available Scripts
+
+### To contribute to this project, fork the repository then clone it to your local machine.
+### You'd need a [firebase](https://firebase.google.com/) account to develop this project.
+* You will also need to install node and git.
+
+* Inside the project directory open the terminal and type `npm init -y`
+
 
 In the project directory, you can run:
 
