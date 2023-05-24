@@ -30,7 +30,7 @@ const App = () => {
   return (
     <div className="App">
       <header>
-        <h1>CHAT APP</h1>
+        <h1 style = {{display:"flex", margin:"auto"}}/>CHAT APPLICATION</h1>
         <SignOut />
       </header>
       <section>
